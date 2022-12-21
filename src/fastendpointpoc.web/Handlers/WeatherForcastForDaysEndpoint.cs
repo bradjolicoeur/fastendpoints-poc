@@ -1,12 +1,13 @@
 ﻿using fastendpointpoc.web.Models;
 using fastendpointpoc.web.Services;
 using FastEndpoints;
+using FluentValidation;
 
 namespace fastendpointpoc.web.Handlers
 {
     public class WeatherForcastForDaysEndpoint : Endpoint<ForcastForDaysCommand, ForcastForDaysResponse>
     {
-
+        //Injected
         public IForcastService ForcastService { private get; init; }
 
         public override void Configure()
@@ -27,6 +28,18 @@ namespace fastendpointpoc.web.Handlers
         }
 
         
+    }
+
+    public class ForcastForDaysCommandValidator : Validator<ForcastForDaysCommand>
+    {
+        public ForcastForDaysCommandValidator()
+        {
+            RuleFor(x => x.Days)
+                .GreaterThan(0)
+                .WithMessage("Kind of silly to request a forcast for no days")
+                .LessThanOrEqualTo(10)
+                .WithMessage("Forcast can be generated for a maximum of 10 days");
+        }
     }
 
     public class ForcastForDaysCommand

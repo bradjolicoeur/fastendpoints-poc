@@ -6,7 +6,7 @@ namespace fastendpointpoc.web.Handlers
 {
     public class WeatherForcastEndpoint : EndpointWithoutRequest<WeatherForcastResponse>
     {
-        
+        //Injected
         public IForcastService ForcastService { private get;  init; }
 
         public override void Configure()
