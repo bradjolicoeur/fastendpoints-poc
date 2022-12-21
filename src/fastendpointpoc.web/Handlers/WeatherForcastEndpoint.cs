@@ -4,10 +4,10 @@ using FastEndpoints;
 
 namespace fastendpointpoc.web.Handlers
 {
-    public class WeatherEndpoint : EndpointWithoutRequest<WeatherForcastResponse>
+    public class WeatherForcastEndpoint : EndpointWithoutRequest<WeatherForcastResponse>
     {
         
-        public IForcastService ForcastService { get;  init; }
+        public IForcastService ForcastService { private get;  init; }
 
         public override void Configure()
         {
