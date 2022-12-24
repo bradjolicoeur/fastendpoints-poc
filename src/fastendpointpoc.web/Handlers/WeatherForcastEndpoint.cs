@@ -17,6 +17,7 @@ namespace fastendpointpoc.web.Handlers
                 s.Summary = "Weather Forcast";
             });
             AllowAnonymous();
+            ResponseCache(10);
         }
 
         public override async Task HandleAsync(CancellationToken ct)
